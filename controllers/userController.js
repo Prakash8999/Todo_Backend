@@ -19,7 +19,11 @@ try {
 	const hashedPassword = await bcrypt.hash(password, 10)
 
 	user = await User.create({ name, email, password: hashedPassword })
-	sendCookie(user, res, "Registered Successfully", 201)
+	res.json({
+		success: true,
+		message: "Account Created Successfully"
+
+	})
 } catch (error) {
 	next(error)
 }
